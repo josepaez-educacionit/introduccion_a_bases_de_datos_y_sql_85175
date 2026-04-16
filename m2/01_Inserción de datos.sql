@@ -30,3 +30,45 @@ SET Nombre = 'Antivirus', Marca = 'AVG', Categoria = 'Utilidades', Stock = 10, D
 # Manera Simplificada
 INSERT INTO Productos 
 VALUES ( null, 'Mouse', 20, 'LG', 'Dispositivos', 0, false );
+
+
+-- Utilizacion de NULL en consultas
+select * from Productos where precio is null;
+select * from Productos where precio is not null;
+
+# Consulta de Datos Anexados
+CREATE TABLE ClientesVIP (
+    ID INT AUTO_INCREMENT PRIMARY KEY, 
+    Nombre VARCHAR(50) NOT NULL, 
+    Apellido VARCHAR(50) NOT NULL, 
+    Email VARCHAR(100), 
+    Telefono VARCHAR(20), 
+    Ciudad VARCHAR(50), 
+    Provincia VARCHAR(50), 
+    CodigoPostal VARCHAR(10) 
+);
+
+show tables;
+
+desc Clientes;
+desc ClientesVIP;
+
+select * from ClientesVIP;
+
+truncate table ClientesVIP;
+
+/*
+insert into ClientesVIP (ID, Nombre, Apellido, Email, Telefono, Ciudad, Provincia, CodigoPostal)
+select 					 ID, Nombre, Apellido, Email, Telefono, Ciudad, Provincia, CodigoPostal
+from Clientes;
+*/
+
+insert into ClientesVIP (ID, Nombre, Apellido, Email, Telefono, Ciudad, Provincia, CodigoPostal)
+select 					 ID, Nombre, Apellido, Email, Telefono, Ciudad, Provincia, CodigoPostal
+from Clientes where id = 23;
+
+insert into ClientesVIP (ID, Nombre, Apellido, Email, Telefono, Ciudad, Provincia, CodigoPostal)
+select 					 ID, Nombre, Apellido, Email, Telefono, Ciudad, Provincia, CodigoPostal
+from Clientes where id = 19;
+
+select * from ClientesVIP;
