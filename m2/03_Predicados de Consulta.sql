@@ -126,3 +126,29 @@ select * from articulos where Id in (3, 5, 10);
 -- NOT IN 
 select * from articulos where Id not in (3, 5, 10);
 
+-- LIKE
+-- Es un operador lógico que se utiliza para filtrar resultados que coinciden con un patrón específico en una consulta SQL. 
+-- Devuelve verdadero si el valor se encuentra en el patrón especificado.
+
+select * from articulos where Nombre like 'A%';
+select * from articulos where Nombre like '%A';
+select * from articulos where Nombre like '%A%';
+select * from articulos where Nombre like '%1%';
+select * from articulos where Nombre like '%A_P__A%';
+
+select * from articulos where Nombre like '%\%%';
+
+-- select * from persona where Cuit like '%30-________-7%';
+
+-- NOT LIKE
+select * from articulos where Nombre not like '%A%';
+
+
+--  IS NULL
+-- Es un operador lógico que se utiliza para filtrar resultados que tienen un valor nulo en una consulta SQL. 
+-- Devuelve verdadero si el valor es nulo.
+
+SELECT * FROM productos where Precio is null;
+
+--  IS NOT NULL
+SELECT * FROM productos where Precio is not null;
