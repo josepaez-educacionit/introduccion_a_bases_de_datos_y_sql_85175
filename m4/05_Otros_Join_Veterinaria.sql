@@ -100,3 +100,130 @@ INSERT INTO Tabla2 (Codigo, Nombre2) VALUES
 
 select * from Tabla1;
 select * from Tabla2;
+
+
+#  LEFT JOIN (LEFT OUTER JOIN)
+/*
+El LEFT JOIN devuelve todas las filas de la tabla izquierda y las filas coincidentes de la tabla derecha. 
+Si no hay coincidencia, las columnas de la tabla derecha aparecen como NULL.
+
+SELECT columnas
+FROM tabla1
+LEFT JOIN tabla2 ON tabla1.campo = tabla2.campo;
+
+Cuándo Usar LEFT JOIN
+	Para listados completos de la entidad principal
+	Análisis de completitud (clientes sin mascotas, servicios sin uso)
+*/
+
+
+Use Laboratorio;
+
+select *
+from tabla1 t1
+	left join tabla2 t2 on t1.codigo = t2.codigo;
+    
+    
+
+# RIGHT JOIN (RIGHT OUTER JOIN)
+/*
+El RIGHT JOIN devuelve todas las filas de la tabla derecha y las filas coincidentes de la tabla izquierda. 
+Es menos común que LEFT JOIN.
+
+SELECT columnas
+FROM tabla1
+RIGHT JOIN tabla2 ON tabla1.campo = tabla2.campo;
+
+Cuándo Usar RIGHT JOIN:
+	Menos frecuente en la práctica
+	Cuando la lógica de consulta favorece la tabla derecha
+	Generalmente se prefiere reescribir como LEFT JOIN intercambiando las tablas
+*/    
+
+
+Use Laboratorio;
+select *
+from tabla1 t1
+	right join tabla2 t2 on t1.codigo = t2.codigo;
+    
+
+
+/*
+El CROSS JOIN produce el producto cartesiano entre dos tablas: cada fila de la primera tabla se combina con cada fila de la segunda tabla.
+
+SELECT columnas
+FROM tabla1
+CROSS JOIN tabla2;
+
+Cuándo Usar CROSS JOIN
+	- Matrices de análisis 
+    - Análisis combinatorio en general
+*/
+    
+
+use laboratorio;
+
+select *
+from tabla1 cross join tabla2
+order by tabla1.codigo
+;    
+
+-- Ejemplo de Cross Join
+/*
+prompt 3:
+	Necesito una tabla con los 30 equipos participantes de la Liga Profesional Argentina 2026 (según la AFA), para una demostración de CROSS JOIN en SQL. Proporciona la definición de la tabla, las sentencias CREATE TABLE y los scripts INSERT con los datos correspondientes
+*/
+    
+    
+-- 1. Definición de la tabla
+Use laboratorio;
+
+CREATE TABLE Equipos (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(50) NOT NULL
+);    
+
+-- 2. Inserción de los 30 equipos
+-- Los 30 clubes confirmados para la temporada 2026 son los siguientes.
+
+INSERT INTO Equipos (Nombre) VALUES
+('Aldosivi'),
+('Argentinos Juniors'),
+('Atlético Tucumán'),
+('Barracas Central'),
+('Banfield'),
+('Belgrano'),
+('Boca Juniors'),
+('Central Córdoba (SdE)'),
+('Defensa y Justicia'),
+('Deportivo Riestra'),
+('Estudiantes (LP)'),
+('Estudiantes (RC)'),
+('Gimnasia (LP)'),
+('Gimnasia (M)'),
+('Huracán'),
+('Independiente'),
+('Independiente Rivadavia'),
+('Instituto'),
+('Lanús'),
+('Newell''s Old Boys'),
+('Platense'),
+('Racing Club'),
+('River Plate'),
+('Rosario Central'),
+('San Lorenzo'),
+('Sarmiento'),
+('Talleres'),
+('Tigre'),
+('Unión'),
+('Vélez Sarsfield');
+
+
+select * from Equipos;
+
+
+select L.Nombre as Local, V.Nombre as Vistante
+from Equipos as L
+	cross join Equipos as V
+where L.Nombre <> V.Nombre
+;    
