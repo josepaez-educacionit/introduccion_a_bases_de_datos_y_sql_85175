@@ -72,3 +72,31 @@ group by
 having count(*) > 1
 ;
 
+
+-- 1. Creación de las tablas
+Use laboratorio;
+
+CREATE TABLE Tabla1 (
+    Codigo INT,
+    Nombre VARCHAR(15)
+);
+
+CREATE TABLE Tabla2 (
+    Codigo INT,
+    Nombre2 VARCHAR(15)
+);
+
+-- 2. Inserción de registros en Tabla1
+INSERT INTO Tabla1 (Codigo, Nombre) VALUES
+(1, 'A'),
+(3, 'C'),
+(8, 'H');
+
+-- 3. Inserción de registros en Tabla2
+INSERT INTO Tabla2 (Codigo, Nombre2) VALUES
+(3, 'Tres'),
+(5, 'Cinco'),
+(8, 'Ocho');
+
+select * from Tabla1;
+select * from Tabla2;
